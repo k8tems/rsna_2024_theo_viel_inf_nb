@@ -79,3 +79,65 @@ study_id
 series_id
 series_description The scan's orientation.
 </dataset>
+
+The directory structure of the competition root directory:
+```
+# !ls -ls {comp_root}
+train.csv
+train_label_coordinates.csv
+train_series_descriptions.csv
+test_series_descriptions.csv
+sample_submission.csv
+test_images/
+train_images/
+```
+
+The directory structure of train_images:
+```
+train_images/
+  {series_id_1}/
+    {study_id_1}/
+    {study_id_2}/
+  {series_id_2}/
+  ...
+```
+`test_images/` has the same structure, but the contents will be replaced with a hidden dataset during submission
+As stated in the dataset overview tab, `test.csv` would be the ground truth for the hidden test set, so it is inaccessible even during submission
+
+Below are previews of the csv files generated with:
+```
+print(pd.read_csv(comp_root/{path}).head(3).to_csv(index=False))
+```
+
+<preview>
+
+# train.csv
+study_id,spinal_canal_stenosis_l1_l2,spinal_canal_stenosis_l2_l3,spinal_canal_stenosis_l3_l4,spinal_canal_stenosis_l4_l5,spinal_canal_stenosis_l5_s1,left_neural_foraminal_narrowing_l1_l2,left_neural_foraminal_narrowing_l2_l3,left_neural_foraminal_narrowing_l3_l4,left_neural_foraminal_narrowing_l4_l5,left_neural_foraminal_narrowing_l5_s1,right_neural_foraminal_narrowing_l1_l2,right_neural_foraminal_narrowing_l2_l3,right_neural_foraminal_narrowing_l3_l4,right_neural_foraminal_narrowing_l4_l5,right_neural_foraminal_narrowing_l5_s1,left_subarticular_stenosis_l1_l2,left_subarticular_stenosis_l2_l3,left_subarticular_stenosis_l3_l4,left_subarticular_stenosis_l4_l5,left_subarticular_stenosis_l5_s1,right_subarticular_stenosis_l1_l2,right_subarticular_stenosis_l2_l3,right_subarticular_stenosis_l3_l4,right_subarticular_stenosis_l4_l5,right_subarticular_stenosis_l5_s1
+4003253,Normal/Mild,Normal/Mild,Normal/Mild,Normal/Mild,Normal/Mild,Normal/Mild,Normal/Mild,Normal/Mild,Moderate,Normal/Mild,Normal/Mild,Normal/Mild,Moderate,Moderate,Normal/Mild,Normal/Mild,Normal/Mild,Normal/Mild,Moderate,Normal/Mild,Normal/Mild,Normal/Mild,Normal/Mild,Normal/Mild,Normal/Mild
+4646740,Normal/Mild,Normal/Mild,Moderate,Severe,Normal/Mild,Normal/Mild,Normal/Mild,Normal/Mild,Moderate,Moderate,Normal/Mild,Normal/Mild,Moderate,Moderate,Normal/Mild,Normal/Mild,Normal/Mild,Normal/Mild,Severe,Normal/Mild,Normal/Mild,Moderate,Moderate,Moderate,Normal/Mild
+7143189,Normal/Mild,Normal/Mild,Normal/Mild,Normal/Mild,Normal/Mild,Normal/Mild,Normal/Mild,Normal/Mild,Normal/Mild,Normal/Mild,Normal/Mild,Normal/Mild,Normal/Mild,Normal/Mild,Normal/Mild,Normal/Mild,Normal/Mild,Normal/Mild,Normal/Mild,Normal/Mild,Normal/Mild,Normal/Mild,Normal/Mild,Normal/Mild,Normal/Mild
+
+# train_label_coordinates.csv
+study_id,series_id,instance_number,condition,level,x,y
+4003253,702807833,8,Spinal Canal Stenosis,L1/L2,322.83185840707966,227.9646017699115
+4003253,702807833,8,Spinal Canal Stenosis,L2/L3,320.57142857142856,295.7142857142857
+4003253,702807833,8,Spinal Canal Stenosis,L3/L4,323.03030303030306,371.8181818181818
+
+# train_series_descriptions.csv
+study_id,series_id,series_description
+4003253,702807833,Sagittal T2/STIR
+4003253,1054713880,Sagittal T1
+4003253,2448190387,Axial T2
+
+# sample_submission.csv
+row_id,normal_mild,moderate,severe
+44036939_left_neural_foraminal_narrowing_l1_l2,0.3333333333333333,0.3333333333333333,0.3333333333333333
+44036939_left_neural_foraminal_narrowing_l2_l3,0.3333333333333333,0.3333333333333333,0.3333333333333333
+44036939_left_neural_foraminal_narrowing_l3_l4,0.3333333333333333,0.3333333333333333,0.3333333333333333
+
+# test_series_descriptions.csv
+study_id,series_id,series_description
+44036939,2828203845,Sagittal T1
+44036939,3481971518,Axial T2
+44036939,3844393089,Sagittal T2/STIR
+</preview>

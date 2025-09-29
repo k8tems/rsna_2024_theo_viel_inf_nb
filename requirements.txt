@@ -1,33 +1,33 @@
 # Core ML and Deep Learning
-torch>=1.12.0
-torchvision>=0.13.0
-timm>=0.6.0
+torch
+torchvision
+timm
 
 # Data Processing and Analysis
-numpy>=1.21.0
-pandas>=1.3.0
-scipy>=1.7.0
-scikit-learn>=1.0.0
+numpy
+pandas
+scipy
+scikit-learn
 
 # Computer Vision and Image Processing
-opencv-python>=4.5.0
-albumentations>=1.2.0
-Pillow>=8.3.0
+opencv-python
+albumentations
+Pillow
 
 # Progress Bars and Utilities
-tqdm>=4.62.0
+tqdm
 
 # Transformers (for learning rate scheduling)
-transformers>=4.20.0
+transformers
 
 # Parallel Processing
-joblib>=1.1.0
+joblib
 
 # Visualization (optional but used in inference)
-matplotlib>=3.5.0
+matplotlib
 
 # Medical Imaging (if needed for DICOM processing)
-# pydicom>=2.3.0  # Uncomment if DICOM processing is required
+# pydicom  # Uncomment if DICOM processing is required
 
 # Additional utilities that might be needed
-# neptune-client>=0.16.0  # Uncomment if using Neptune for experiment tracking
+# neptune-client  # Uncomment if using Neptune for experiment tracking
